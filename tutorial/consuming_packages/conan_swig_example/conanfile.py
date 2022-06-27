@@ -16,8 +16,8 @@ class ConanSwigExampleConan(ConanFile):
     # Binary configuration
     settings = "os", "compiler", "build_type", "arch"
 
-    requires = ("swig/4.0.2")
-    tool_requires = ("cmake/3.23.2", "ninja/1.11.0", "ccache/4.6")
+#    requires = ()
+    build_requires = ("cmake/3.23.2", "ninja/1.11.0", "ccache/4.6", "swig/4.0.2")
     build_policy = "missing"
     # Sources are located in the same place as this recipe, copy them to the recipe
     exports_sources = "CMakeLists.txt", "src/*", "include/*"
@@ -39,5 +39,6 @@ class ConanSwigExampleConan(ConanFile):
         cmake.install()
 
     def package_info(self):
-        self.cpp_info.libs = ["conan_swig_example_lib"]
+        self.cpp_info.libs = ["conan_swig_example_lib", "conan_swig_example_lib_python_binding"]
         self.cpp_info.bin = ["conan_swig_example_exe"]
+        self.cpp_info.resdirs = ["conan_swig_example_lib_python_binding"]

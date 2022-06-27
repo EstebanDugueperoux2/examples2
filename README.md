@@ -23,3 +23,15 @@
 ### [How to cross-compile your applications using Conan](tutorial/consuming_packages/cross_building/)
 
 - Learn how to cross-compile your applications with Conan. [Docs](https://docs.conan.io/en/2.0-alpha/tutorial/consuming_packages/cross_building_with_conan.html)
+
+### [How to use SWIG with Conan to have its package consumable from other languages as Python](tutorial/consuming_packages/cp,a,_swig_example/)
+
+- Learn how to use SWIG with Conan to have its package consumable from Python:
+
+- cd tutorial/consuming_packages/conan_swig_example/
+- docker run --rm -ti -v ${PWD}:/home/conan/project conanio/gcc7
+# SWIG needs Python.h from python3-dev ubuntu package
+- sudo apt-get update
+- sudo apt-get install python3-dev
+- cd project
+- conan create . --profile profile

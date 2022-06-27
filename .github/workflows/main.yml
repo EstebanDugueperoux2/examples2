@@ -19,7 +19,6 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-    #conanio/gcc7-ubuntu16.04
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -28,5 +27,13 @@ jobs:
 
     # Runs a set of commands using the runners shell
       - name: Run a multi-line script
-        run: |
-          conan create .
+        uses: docker://conanio/gcc7-ubuntu16.04
+        with:
+          #entrypoint: /bin/echo
+          #args: The ${{ github.event_name }} event triggered this step.
+          entrypoint: bash
+          args: cd tutorial/consuming_packages/conan_swig_example/ && conan create . --profile profile
+          #conan create . --profile profile
+        #run: |
+        #  conan --version
+        #  conan create .
